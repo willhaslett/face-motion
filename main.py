@@ -28,15 +28,16 @@ while(1):
     rgb = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
 
     cv2.imshow('frame2',rgb)
-
-    out.write(frame2)
+    
+    out.write(rgb)
 
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
     elif k == ord('s'):
-        cv2.imwrite('opticalfb.png',frame2)
-        cv2.imwrite('opticalhsv.png',rgb)
+        pass
+        # cv2.imwrite('opticalfb.png',frame2)
+        # cv2.imwrite('opticalhsv.png',rgb)
     prvs = next
 
 
