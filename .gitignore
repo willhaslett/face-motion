@@ -1,5 +1,9 @@
+# vim swap files
+*.swp
+
 # Don't keep the videos in the repo
-videos/
+videos-input/
+videos-output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

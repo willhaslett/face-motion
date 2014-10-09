@@ -1,12 +1,17 @@
 import numpy as np
 import cv2
 
-cap = cv2.VideoCapture('videos/F000G26.mp4')
+# open video TODO:loop through all videos in folder
+cap = cv2.VideoCapture('videos-input/F000G26.mp4')
 
-fourcc = cv2.VideoWriter_fourcc(*'XVID')
-out = cv2.VideoWriter('videos/F000G26-output.avi',fourcc, 20.0, (200,200))
-
+# read the first video frame
 ret, frame1 = cap.read()
+
+# set up the output video file
+height, width, layers = frame1.shape
+fourcc = cv2.VideoWriter_fourcc(*'XVID')
+out = cv2.VideoWriter('videos-output/F000G26-output.avi',fourcc, 20.0, (width,height))
+
 prvs = cv2.cvtColor(frame1,cv2.COLOR_BGR2GRAY)
 hsv = np.zeros_like(frame1)
 hsv[...,1] = 255
@@ -23,6 +28,9 @@ while(1):
     rgb = cv2.cvtColor(hsv,cv2.COLOR_HSV2BGR)
 
     cv2.imshow('frame2',rgb)
+
+    out.write(frame2)
+
     k = cv2.waitKey(30) & 0xff
     if k == 27:
         break
@@ -31,7 +39,6 @@ while(1):
         cv2.imwrite('opticalhsv.png',rgb)
     prvs = next
 
-    out.write(frame2)
 
 cap.release()
 out.release()
