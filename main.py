@@ -28,7 +28,8 @@ for input_video in os.listdir('videos-input'):
     num_frames = 0
     total_mag = 0
     out_data = []
-    while(1):
+    # Only analyze the first two seconds of video
+    while(num_frames < 60):
         ret, frame2 = cap.read()
         try:
             next = cv2.cvtColor(frame2,cv2.COLOR_BGR2GRAY)
